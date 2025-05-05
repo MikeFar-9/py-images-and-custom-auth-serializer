@@ -34,8 +34,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class AuthTokenSerializer(serializers.Serializer):
-    username = serializers.CharField(
-        label=_("Username"),
+    email = serializers.CharField(
+        label=_("Email"),
         write_only=True
     )
     password = serializers.CharField(
@@ -50,12 +50,12 @@ class AuthTokenSerializer(serializers.Serializer):
     )
 
     def validate(self, attrs):
-        username = attrs.get("username")
+        email = attrs.get("email")
         password = attrs.get("password")
 
-        if username and password:
+        if email and password:
             user = authenticate(request=self.context.get("request"),
-                                username=username, password=password)
+                                email=email, password=password)
 
             # The authenticate call simply returns None for is_active=False
             # users. (Assuming the default ModelBackend authentication

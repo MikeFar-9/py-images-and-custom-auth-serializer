@@ -170,8 +170,8 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
         url_path="upload_image"
     )
     def upload_image(self, request, pk=None):
-        movie = self.get_object()
-        serializer = self.get_serializer(movie, data=request.data)
+        movie_session = self.get_object()
+        serializer = self.get_serializer(movie_session, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
