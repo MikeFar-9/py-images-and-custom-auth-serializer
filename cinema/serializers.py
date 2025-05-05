@@ -36,6 +36,12 @@ class MovieImageSerializer(serializers.ModelSerializer):
         fields = ("id", "image")
 
 
+class MovieSessionImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MovieSession
+        fields = ("id", "image")
+
+
 class MovieSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
